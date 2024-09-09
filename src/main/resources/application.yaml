@@ -26,6 +26,6 @@ spring:
   app:
     jwt:
       secret: "skillbox_jwt_secret"
-      tokenExpiratiom: 3m
-      refreshTokenExpiratiom: 30m
+      tokenExpiration: 3m
+      refreshTokenExpiration: 30m
 #      token: "skillbox_jwt_token"
