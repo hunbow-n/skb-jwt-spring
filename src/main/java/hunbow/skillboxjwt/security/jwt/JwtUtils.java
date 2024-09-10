@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
+import java.util.Base64;
 import java.util.Date;
 
 @Component
 @Slf4j
 public class JwtUtils {
-    @Value("${spring.app.jwt.secret}")
+    @Value("${app.jwt.secret}")
     private String jwtSecret;
 
     @Value("${app.jwt.tokenExpiration}")
@@ -29,7 +30,8 @@ public class JwtUtils {
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime() + tokenExpiration.toMillis()))
-                .signWith(SignatureAlgorithm.ES512, jwtSecret)
+                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+//                .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }
 

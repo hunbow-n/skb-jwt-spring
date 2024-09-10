@@ -16,7 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class RefreshTokenService {
 
-    @Value("${spring.app.jwt.refreshTokenExpiration}")
+    @Value("${app.jwt.refreshTokenExpiration}")
     private Duration refreshTokenExpiration;
 
     private final RefreshTokenRepository refreshTokenRepository;
@@ -28,7 +28,7 @@ public class RefreshTokenService {
     public RefreshToken createRefreshToken(Long userId) {
         RefreshToken refreshToken = RefreshToken.builder()
                 .token(UUID.randomUUID().toString())
-                .expiresAt(Instant.now().plusSeconds(refreshTokenExpiration.toMillis()))
+                .expiresAt(Instant.now().plusSeconds(refreshTokenExpiration.toSeconds()))
                 .userId(userId)
                 .build();
         return refreshTokenRepository.save(refreshToken);

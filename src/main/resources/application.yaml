@@ -1,31 +1,29 @@
 spring:
-  application:
-    name: skillbox-jwt
   data:
     redis:
       host: localhost
-      port: 6379
-
-
+      port: 6767
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     url: jdbc:postgresql://localhost:5557/skillbox
     username: spring_user
     password: spring_pass
-    driverClassName: org.postgresql.Driver
-  h2:
-    console.enabled: true
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: false
-        show_sql: false
-  app:
-    jwt:
-      secret: "skillbox_jwt_secret"
-      tokenExpiration: 3m
-      refreshTokenExpiration: 30m
-#      token: "skillbox_jwt_token"
+    driver-class-name: org.postgresql.Driver
+#    hikari:
+#      schema: user_schema
+#      connection-init-sql: CREATE SCHEMA IF NOT EXISTS user_schema
+#      connection-timeout: 10000
+app:
+  jwt:
+    secret: "c2tpbGxib3hfand0X3NlY3JldHNraWxsYm94X2p3dF9zZWNyZXRza2lsbGJveF9qd3Rfc2VjcmV0c2tpbGxib3hfand0X3NlY3JldHNraWxsYm94"
+#    secret: "skillbox_jwt_secret"
+    tokenExpiration: 3m
+    refreshTokenExpiration: 30d
+#server:
+#  port: 8085
+#debug: true
