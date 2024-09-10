@@ -24,7 +24,7 @@ public class JwtUtils {
     }
 
     // кодируем имя пользователя через сет сабджект с помощью сикрет в jwt
-    private String generateTokenFromUsername(String username) {
+    public String generateTokenFromUsername(String username) {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
